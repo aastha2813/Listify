@@ -16,12 +16,12 @@ const categories = [
   },
   {
     id: 4,
-    name: "Ahmedabad",
+    name: "Surat",
     icon: "📍",
   },
   {
     id: 5,
-    name: "Surat",
+    name: "Ahmedabad",
     icon: "📍",
   },
   {
