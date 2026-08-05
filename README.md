@@ -1,3 +1,38 @@
+# 📝 Listify
+
+Listify is a simple family to-do list website designed for everyday use.
+It helps organize daily tasks into separate lists for family members,
+shopping, locations, and other activities.
+
+## 🌐 Use Listify
+
+👉 [Open Listify](https://listify-delta-three.vercel.app)
+
+## ✨ Features
+
+- Separate task categories
+- Add tasks by typing and pressing Enter
+- Mark tasks as completed
+- Delete individual tasks
+- Clear all tasks
+- Tasks saved using Local Storage
+- Tasks remain after refreshing
+- Pastel-themed user interface
+
+## 🛠️ Technologies Used
+
+- React
+- JavaScript
+- CSS
+- Vite
+- React Router
+- Local Storage
+
+## 🚀 Deployment
+
+The application is deployed on Vercel and connected to this GitHub repository
+for automatic deployments.
+
 # React + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
