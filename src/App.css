@@ -664,3 +664,129 @@
     width: 100%;
   }
 }
+
+/* =========================
+   COMPLETED TASKS
+========================= */
+
+.task-checkbox {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+
+.task-name {
+  flex: 1;
+}
+
+.completed-task {
+  background: #f5f3f6;
+  opacity: 0.7;
+}
+
+.completed-task .task-name {
+  text-decoration: line-through;
+  color: #99939e;
+}
+
+.task-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.task-left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.delete-btn {
+  border: none;
+  background: #ffe4e6;
+  padding: 9px 12px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 16px;
+  opacity: 0;
+  transition: 0.2s ease;
+}
+
+.task-item:hover .delete-btn {
+  opacity: 1;
+}
+
+.delete-btn:hover {
+  background: #fecdd3;
+  transform: scale(1.05);
+}
+
+/* =========================
+   QUICK ADD TASK
+========================= */
+
+.quick-add-task {
+  margin-top: 18px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+
+  background: #fff;
+  border: 1px dashed #d9d1dc;
+  border-radius: 15px;
+
+  padding: 16px 20px;
+
+  transition: 0.2s ease;
+}
+
+.quick-add-task:focus-within {
+  border-color: #cbb8f5;
+  box-shadow: 0 4px 15px rgba(90, 70, 110, 0.07);
+}
+
+.quick-add-plus {
+  font-size: 25px;
+  color: #a69cab;
+  font-weight: 400;
+}
+
+.quick-add-task input {
+  flex: 1;
+
+  border: none;
+  outline: none;
+  background: transparent;
+
+  font-size: 17px;
+  color: #403d50;
+}
+
+.quick-add-task input::placeholder {
+  color: #aaa5af;
+}
+
+/* =========================
+   CLEAR ALL BUTTON
+========================= */
+
+.clear-all-btn {
+  border: none;
+  background: #ffe3e8;
+  color: #9c5360;
+
+  padding: 11px 20px;
+  border-radius: 12px;
+
+  font-size: 15px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: 0.2s ease;
+}
+
+.clear-all-btn:hover {
+  background: #ffd5dd;
+  transform: translateY(-1px);
+}

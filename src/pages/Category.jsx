@@ -1,21 +1,58 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
-import AddTaskModal from "../components/AddTaskModal";
 
 function Category() {
   const { name } = useParams();
 
-  const [showModal, setShowModal] = useState(false);
-  const [tasks, setTasks] = useState([]);
+  const storageKey = `listify-${name}`;
 
-  const handleAddTask = (taskName) => {
-    const newTask = {
-      id: Date.now(),
-      name: taskName,
-      completed: false,
-    };
+  const [newTask, setNewTask] = useState("");
 
-    setTasks([...tasks, newTask]);
+  // Load this category's tasks from localStorage
+  const [tasks, setTasks] = useState(() => {
+    const savedTasks = localStorage.getItem(storageKey);
+
+    return savedTasks ? JSON.parse(savedTasks) : [];
+  });
+
+  // Save tasks whenever they change
+  useEffect(() => {
+    localStorage.setItem(storageKey, JSON.stringify(tasks));
+  }, [tasks, storageKey]);
+
+  // Add task when Enter is pressed
+  const handleAddTask = (e) => {
+    if (e.key === "Enter" && newTask.trim() !== "") {
+      const task = {
+        id: Date.now(),
+        name: newTask.trim(),
+        completed: false,
+      };
+
+      setTasks([...tasks, task]);
+      setNewTask("");
+    }
+  };
+
+  // Complete / uncomplete task
+  const handleToggleTask = (taskId) => {
+    setTasks(
+      tasks.map((task) =>
+        task.id === taskId
+          ? { ...task, completed: !task.completed }
+          : task
+      )
+    );
+  };
+
+  // Delete one task
+  const handleDeleteTask = (taskId) => {
+    setTasks(tasks.filter((task) => task.id !== taskId));
+  };
+
+  // Clear the entire current list
+  const handleClearAll = () => {
+    setTasks([]);
   };
 
   return (
@@ -33,55 +70,85 @@ function Category() {
       <div className="task-section">
 
         <div className="task-title-row">
+
           <div>
             <h2>My Tasks</h2>
+
             <p>
               {tasks.length === 0
                 ? "No tasks added yet"
-                : `${tasks.length} task${tasks.length > 1 ? "s" : ""}`}
+                : `${tasks.length} ${
+                    tasks.length === 1 ? "task" : "tasks"
+                  }`}
             </p>
           </div>
 
-          <button
-            className="add-task-button"
-            onClick={() => setShowModal(true)}
-          >
-            + Add Task
-          </button>
+          {tasks.length > 0 && (
+            <button
+              className="clear-all-btn"
+              onClick={handleClearAll}
+            >
+              Clear All
+            </button>
+          )}
+
         </div>
 
-        {tasks.length === 0 ? (
-          <div className="empty-tasks">
-            <div className="empty-icon">📝</div>
-            <h3>Nothing here yet!</h3>
-            <p>Add your first task to get started.</p>
-
-            <button
-              className="empty-add-button"
-              onClick={() => setShowModal(true)}
-            >
-              + Add your first task
-            </button>
-          </div>
-        ) : (
+        {tasks.length > 0 && (
           <div className="task-list">
+
             {tasks.map((task) => (
-              <div className="task-item" key={task.id}>
-                <span className="task-checkbox">⬜</span>
-                <span>{task.name}</span>
+              <div
+                key={task.id}
+                className={`task-item ${
+                  task.completed ? "completed-task" : ""
+                }`}
+              >
+
+                <div className="task-left">
+
+                  <input
+                    type="checkbox"
+                    className="task-checkbox"
+                    checked={task.completed}
+                    onChange={() => handleToggleTask(task.id)}
+                  />
+
+                  <span className="task-name">
+                    {task.name}
+                  </span>
+
+                </div>
+
+                <button
+                  className="delete-btn"
+                  onClick={() => handleDeleteTask(task.id)}
+                  title="Delete task"
+                >
+                  🗑️
+                </button>
+
               </div>
             ))}
+
           </div>
         )}
 
-      </div>
+        <div className="quick-add-task">
 
-      {showModal && (
-        <AddTaskModal
-          onClose={() => setShowModal(false)}
-          onAddTask={handleAddTask}
-        />
-      )}
+          <span className="quick-add-plus">+</span>
+
+          <input
+            type="text"
+            placeholder="Type a new task and press Enter..."
+            value={newTask}
+            onChange={(e) => setNewTask(e.target.value)}
+            onKeyDown={handleAddTask}
+          />
+
+        </div>
+
+      </div>
 
     </div>
   );
