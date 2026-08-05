@@ -1,14 +1,18 @@
-/* ============================= */
-/*        LISTIFY DASHBOARD      */
-/* ============================= */
+/* =============================
+        LISTIFY DASHBOARD
+============================= */
 
 .dashboard {
   min-height: 100vh;
   background: #fffaf7;
   padding: 50px 20px;
+  box-sizing: border-box;
 }
 
-/* ===== HEADER ===== */
+
+/* =============================
+        DASHBOARD HEADER
+============================= */
 
 .dashboard-header {
   text-align: center;
@@ -28,9 +32,9 @@
 }
 
 
-/* ============================= */
-/*        CATEGORY GRID          */
-/* ============================= */
+/* =============================
+        CATEGORY GRID
+============================= */
 
 .category-container {
   width: 100%;
@@ -43,9 +47,9 @@
 }
 
 
-/* ============================= */
-/*        CATEGORY CARDS         */
-/* ============================= */
+/* =============================
+        CATEGORY CARDS
+============================= */
 
 .category-card {
   border-radius: 20px;
@@ -64,42 +68,44 @@
 }
 
 
-/* ===== PASTEL CARD COLORS ===== */
+/* =============================
+        PASTEL COLORS
+============================= */
 
-/* Vinayak - Pastel Pink */
+/* Vinayak */
 .category-container a:nth-child(1) .category-card {
   background: #ffe4e9;
 }
 
-/* Raju - Pastel Yellow */
+/* Raju */
 .category-container a:nth-child(2) .category-card {
   background: #fff3c4;
 }
 
-/* D-Mart - Pastel Green */
+/* D-Mart */
 .category-container a:nth-child(3) .category-card {
   background: #dff5e3;
 }
 
-/* Ahmedabad - Pastel Blue */
+/* Surat */
 .category-container a:nth-child(4) .category-card {
   background: #dfeeff;
 }
 
-/* Surat - Pastel Purple */
+/* Ahmedabad */
 .category-container a:nth-child(5) .category-card {
   background: #eee4ff;
 }
 
-/* Others - Pastel Peach */
+/* Others */
 .category-container a:nth-child(6) .category-card {
   background: #ffe8d6;
 }
 
 
-/* ============================= */
-/*          CARD HOVER           */
-/* ============================= */
+/* =============================
+        CARD HOVER
+============================= */
 
 .category-card:hover {
   transform: translateY(-5px);
@@ -107,9 +113,9 @@
 }
 
 
-/* ============================= */
-/*          CARD CONTENT         */
-/* ============================= */
+/* =============================
+        CARD CONTENT
+============================= */
 
 .category-card h2 {
   margin: 0 0 12px;
@@ -123,206 +129,86 @@
 }
 
 
-/* ============================= */
-/*          TABLET VIEW          */
-/* ============================= */
+/* =============================
+        TABLET DASHBOARD
+============================= */
 
 @media (max-width: 800px) {
+  .dashboard {
+    padding: 40px 20px;
+  }
 
   .category-container {
     grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
   }
-
 }
 
 
-/* ============================= */
-/*          MOBILE VIEW          */
-/* ============================= */
+/* =============================
+        MOBILE DASHBOARD
+============================= */
 
 @media (max-width: 550px) {
-
   .dashboard {
-    padding: 35px 16px;
+    padding: 28px 16px 40px;
+  }
+
+  .dashboard-header {
+    margin-bottom: 28px;
   }
 
   .dashboard-header h1 {
-    font-size: 36px;
+    font-size: 34px;
   }
 
+  .dashboard-header p {
+    margin-top: 7px;
+    font-size: 14px;
+  }
+
+  /* One category card per row */
   .category-container {
     grid-template-columns: 1fr;
+    gap: 12px;
   }
 
-}/* ============================= */
-/*        LISTIFY DASHBOARD      */
-/* ============================= */
-
-.dashboard {
-  min-height: 100vh;
-  background: #fffaf7;
-  padding: 50px 20px;
-}
-
-/* ===== HEADER ===== */
-
-.dashboard-header {
-  text-align: center;
-  margin-bottom: 42px;
-}
-
-.dashboard-header h1 {
-  margin: 0;
-  font-size: 44px;
-  color: #3d3d4e;
-}
-
-.dashboard-header p {
-  margin-top: 10px;
-  font-size: 17px;
-  color: #888292;
-}
-
-
-/* ============================= */
-/*        CATEGORY GRID          */
-/* ============================= */
-
-.category-container {
-  width: 100%;
-  max-width: 1050px;
-  margin: 0 auto;
-
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
-}
-
-
-/* ============================= */
-/*        CATEGORY CARDS         */
-/* ============================= */
-
-.category-card {
-  border-radius: 20px;
-  padding: 35px 20px;
-
-  text-align: center;
-  cursor: pointer;
-
-  border: 1px solid rgba(255, 255, 255, 0.8);
-
-  box-shadow: 0 5px 15px rgba(80, 70, 90, 0.08);
-
-  transition:
-    transform 0.2s ease,
-    box-shadow 0.2s ease;
-}
-
-
-/* ===== PASTEL CARD COLORS ===== */
-
-/* Vinayak - Pastel Pink */
-.category-container a:nth-child(1) .category-card {
-  background: #ffe4e9;
-}
-
-/* Raju - Pastel Yellow */
-.category-container a:nth-child(2) .category-card {
-  background: #fff3c4;
-}
-
-/* D-Mart - Pastel Green */
-.category-container a:nth-child(3) .category-card {
-  background: #dff5e3;
-}
-
-/* Ahmedabad - Pastel Blue */
-.category-container a:nth-child(4) .category-card {
-  background: #dfeeff;
-}
-
-/* Surat - Pastel Purple */
-.category-container a:nth-child(5) .category-card {
-  background: #eee4ff;
-}
-
-/* Others - Pastel Peach */
-.category-container a:nth-child(6) .category-card {
-  background: #ffe8d6;
-}
-
-
-/* ============================= */
-/*          CARD HOVER           */
-/* ============================= */
-
-.category-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 24px rgba(80, 70, 90, 0.13);
-}
-
-
-/* ============================= */
-/*          CARD CONTENT         */
-/* ============================= */
-
-.category-card h2 {
-  margin: 0 0 12px;
-  font-size: 42px;
-}
-
-.category-card h3 {
-  margin: 0;
-  font-size: 21px;
-  color: #45424f;
-}
-
-
-/* ============================= */
-/*          TABLET VIEW          */
-/* ============================= */
-
-@media (max-width: 800px) {
-
-  .category-container {
-    grid-template-columns: repeat(2, 1fr);
+  .category-card {
+    padding: 18px 16px;
+    border-radius: 16px;
   }
 
+  .category-card h2 {
+    font-size: 32px;
+    margin-bottom: 7px;
+  }
+
+  .category-card h3 {
+    font-size: 17px;
+  }
+
+  /* No hover movement on touch screens */
+  .category-card:hover {
+    transform: none;
+  }
 }
 
 
-/* ============================= */
-/*          MOBILE VIEW          */
-/* ============================= */
-
-@media (max-width: 550px) {
-
-  .dashboard {
-    padding: 35px 16px;
-  }
-
-  .dashboard-header h1 {
-    font-size: 36px;
-  }
-
-  .category-container {
-    grid-template-columns: 1fr;
-  }
-
-}
-
-/* =========================
-   CATEGORY PAGE
-========================= */
+/* =============================
+        CATEGORY PAGE
+============================= */
 
 .category-page {
   min-height: 100vh;
   background: #fffaf7;
   padding: 45px 8%;
+  box-sizing: border-box;
 }
 
-/* Header */
+
+/* =============================
+        CATEGORY HEADER
+============================= */
 
 .category-header {
   max-width: 1100px;
@@ -344,8 +230,8 @@
 }
 
 .category-header h1 {
-  font-size: 42px;
   margin: 0;
+  font-size: 42px;
   color: #353445;
 }
 
@@ -356,17 +242,25 @@
 }
 
 
-/* Task area */
+/* =============================
+        TASK SECTION
+============================= */
 
 .task-section {
   max-width: 1100px;
   margin: 45px auto 0;
 }
 
+
+/* =============================
+        TASK TITLE
+============================= */
+
 .task-title-row {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 15px;
   margin-bottom: 25px;
 }
 
@@ -382,33 +276,224 @@
 }
 
 
-/* Add Task Button */
+/* =============================
+        TASK LIST
+============================= */
 
-.add-task-button {
-  border: none;
-  background: #e7ddff;
-  color: #51466d;
-  padding: 13px 22px;
-  border-radius: 12px;
-  font-weight: 600;
+.task-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+
+/* =============================
+        TASK ITEM
+============================= */
+
+.task-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+
+  background: white;
+  border: 1px solid #eee9e6;
+  border-radius: 15px;
+
+  padding: 18px 20px;
+
+  font-size: 17px;
+  color: #403d50;
+
+  box-shadow: 0 5px 15px rgba(70, 60, 80, 0.05);
+}
+
+
+/* =============================
+        TASK LEFT SIDE
+============================= */
+
+.task-left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+
+  min-width: 0;
+  flex: 1;
+}
+
+
+/* =============================
+        CHECKBOX
+============================= */
+
+.task-checkbox {
+  width: 20px;
+  height: 20px;
+
   cursor: pointer;
-  transition: 0.2s;
-}
-
-.add-task-button:hover {
-  transform: translateY(-2px);
-  background: #ddd0ff;
+  flex-shrink: 0;
 }
 
 
-/* Empty state */
+/* =============================
+        TASK NAME
+============================= */
+
+.task-name {
+  flex: 1;
+  overflow-wrap: anywhere;
+}
+
+
+/* =============================
+        COMPLETED TASK
+============================= */
+
+.completed-task {
+  background: #f5f3f6;
+  opacity: 0.7;
+}
+
+.completed-task .task-name {
+  text-decoration: line-through;
+  color: #99939e;
+}
+
+
+/* =============================
+        DELETE BUTTON
+============================= */
+
+.delete-btn {
+  border: none;
+  background: #ffe4e6;
+
+  padding: 9px 12px;
+  border-radius: 10px;
+
+  cursor: pointer;
+  font-size: 16px;
+
+  opacity: 0;
+  flex-shrink: 0;
+
+  transition: 0.2s ease;
+}
+
+.task-item:hover .delete-btn {
+  opacity: 1;
+}
+
+.delete-btn:hover {
+  background: #fecdd3;
+  transform: scale(1.05);
+}
+
+
+/* =============================
+        QUICK ADD TASK
+============================= */
+
+.quick-add-task {
+  margin-top: 18px;
+
+  display: flex;
+  align-items: center;
+  gap: 14px;
+
+  background: #ffffff;
+
+  border: 1px dashed #d9d1dc;
+  border-radius: 15px;
+
+  padding: 16px 20px;
+
+  transition: 0.2s ease;
+}
+
+.quick-add-task:focus-within {
+  border-color: #cbb8f5;
+  box-shadow: 0 4px 15px rgba(90, 70, 110, 0.07);
+}
+
+
+/* =============================
+        QUICK ADD PLUS
+============================= */
+
+.quick-add-plus {
+  font-size: 25px;
+  color: #a69cab;
+  font-weight: 400;
+  flex-shrink: 0;
+}
+
+
+/* =============================
+        QUICK ADD INPUT
+============================= */
+
+.quick-add-task input {
+  flex: 1;
+  min-width: 0;
+
+  border: none;
+  outline: none;
+  background: transparent;
+
+  font-size: 17px;
+  color: #403d50;
+}
+
+.quick-add-task input::placeholder {
+  color: #aaa5af;
+}
+
+
+/* =============================
+        CLEAR ALL BUTTON
+============================= */
+
+.clear-all-btn {
+  border: none;
+
+  background: #ffe3e8;
+  color: #9c5360;
+
+  padding: 11px 20px;
+  border-radius: 12px;
+
+  font-size: 15px;
+  font-weight: 600;
+
+  cursor: pointer;
+  flex-shrink: 0;
+
+  transition: 0.2s ease;
+}
+
+.clear-all-btn:hover {
+  background: #ffd5dd;
+  transform: translateY(-1px);
+}
+
+
+/* =============================
+        EMPTY TASK STATE
+============================= */
 
 .empty-tasks {
   background: white;
+
   border: 1px solid #eee9e6;
   border-radius: 22px;
+
   padding: 70px 20px;
+
   text-align: center;
+
   box-shadow: 0 8px 25px rgba(70, 60, 80, 0.06);
 }
 
@@ -430,12 +515,16 @@
 
 .empty-add-button {
   border: none;
+
   background: #ffe2e9;
   color: #704d58;
+
   padding: 12px 20px;
   border-radius: 12px;
+
   font-weight: 600;
   cursor: pointer;
+
   transition: 0.2s;
 }
 
@@ -445,60 +534,34 @@
 }
 
 
-/* Tasks */
+/* =============================
+        ADD TASK BUTTON
+============================= */
 
-.task-list {
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
+.add-task-button {
+  border: none;
+
+  background: #e7ddff;
+  color: #51466d;
+
+  padding: 13px 22px;
+  border-radius: 12px;
+
+  font-weight: 600;
+  cursor: pointer;
+
+  transition: 0.2s;
 }
 
-.task-item {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-
-  background: white;
-  border: 1px solid #eee9e6;
-  border-radius: 15px;
-
-  padding: 18px 20px;
-
-  font-size: 17px;
-  color: #403d50;
-
-  box-shadow: 0 5px 15px rgba(70, 60, 80, 0.05);
-}
-
-.task-checkbox {
-  font-size: 20px;
+.add-task-button:hover {
+  transform: translateY(-2px);
+  background: #ddd0ff;
 }
 
 
-/* Mobile */
-
-@media (max-width: 650px) {
-
-  .category-page {
-    padding: 30px 20px;
-  }
-
-  .category-header h1 {
-    font-size: 34px;
-  }
-
-  .task-title-row {
-    align-items: flex-end;
-  }
-
-  .add-task-button {
-    padding: 11px 15px;
-  }
-}
-
-/* =========================
-   ADD TASK MODAL
-========================= */
+/* =============================
+        ADD TASK MODAL
+============================= */
 
 .modal-overlay {
   position: fixed;
@@ -527,13 +590,21 @@
   border-radius: 24px;
   padding: 38px;
 
+  box-sizing: border-box;
+
   box-shadow: 0 20px 60px rgba(70, 60, 80, 0.18);
 
   text-align: center;
 }
 
+
+/* =============================
+        MODAL CLOSE
+============================= */
+
 .modal-close {
   position: absolute;
+
   top: 15px;
   right: 18px;
 
@@ -547,6 +618,7 @@
   color: #77707e;
 
   font-size: 22px;
+
   cursor: pointer;
 
   display: flex;
@@ -558,6 +630,11 @@
   background: #ffe2e9;
 }
 
+
+/* =============================
+        MODAL CONTENT
+============================= */
+
 .modal-icon {
   font-size: 38px;
   margin-bottom: 10px;
@@ -565,20 +642,24 @@
 
 .task-modal h2 {
   margin: 0;
-
   font-size: 27px;
   color: #353445;
 }
 
 .task-modal p {
   margin: 8px 0 25px;
-
   color: #96919e;
   font-size: 15px;
 }
 
+
+/* =============================
+        MODAL INPUT
+============================= */
+
 .task-input {
   width: 100%;
+  box-sizing: border-box;
 
   padding: 14px 16px;
 
@@ -605,7 +686,9 @@
 }
 
 
-/* Buttons */
+/* =============================
+        MODAL BUTTONS
+============================= */
 
 .modal-buttons {
   display: flex;
@@ -648,11 +731,113 @@
 }
 
 
-/* Mobile */
+/* =============================
+     MOBILE CATEGORY PAGE
+============================= */
+
+@media (max-width: 650px) {
+  .category-page {
+    padding: 25px 16px 40px;
+  }
+
+  .category-header {
+    width: 100%;
+  }
+
+  .back-button {
+    margin-bottom: 24px;
+    font-size: 14px;
+  }
+
+  .category-header h1 {
+    font-size: 34px;
+  }
+
+  .category-header p {
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+  .task-section {
+    margin-top: 35px;
+  }
+
+  .task-title-row {
+    margin-bottom: 18px;
+  }
+
+  .task-title-row h2 {
+    font-size: 24px;
+  }
+
+  .task-title-row p {
+    font-size: 14px;
+  }
+
+  .task-item {
+    padding: 15px 14px;
+    border-radius: 13px;
+    font-size: 16px;
+  }
+
+  .task-left {
+    gap: 11px;
+  }
+
+  /* Always visible on phones */
+  .delete-btn {
+    opacity: 1;
+    padding: 8px 10px;
+  }
+
+  .quick-add-task {
+    padding: 14px;
+    gap: 10px;
+  }
+
+  .quick-add-plus {
+    font-size: 22px;
+  }
+
+  .quick-add-task input {
+    font-size: 16px;
+  }
+
+  .clear-all-btn {
+    padding: 9px 12px;
+    font-size: 13px;
+  }
+
+  .empty-tasks {
+    padding: 50px 15px;
+  }
+
+  .empty-icon {
+    font-size: 42px;
+  }
+
+  .empty-tasks h3 {
+    font-size: 20px;
+  }
+}
+
+
+/* =============================
+        MOBILE MODAL
+============================= */
 
 @media (max-width: 500px) {
+  .modal-overlay {
+    padding: 15px;
+  }
+
   .task-modal {
-    padding: 32px 22px 24px;
+    padding: 32px 20px 22px;
+    border-radius: 20px;
+  }
+
+  .task-modal h2 {
+    font-size: 24px;
   }
 
   .modal-buttons {
@@ -665,128 +850,44 @@
   }
 }
 
-/* =========================
-   COMPLETED TASKS
-========================= */
 
-.task-checkbox {
-  width: 20px;
-  height: 20px;
-  cursor: pointer;
-}
+/* =============================
+        VERY SMALL PHONES
+============================= */
 
-.task-name {
-  flex: 1;
-}
+@media (max-width: 360px) {
+  .dashboard {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
 
-.completed-task {
-  background: #f5f3f6;
-  opacity: 0.7;
-}
+  .category-container {
+    gap: 10px;
+  }
 
-.completed-task .task-name {
-  text-decoration: line-through;
-  color: #99939e;
-}
+  .category-card {
+    padding: 16px 12px;
+  }
 
-.task-item {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
+  .category-card h2 {
+    font-size: 30px;
+  }
 
-.task-left {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-}
+  .category-card h3 {
+    font-size: 16px;
+  }
 
-.delete-btn {
-  border: none;
-  background: #ffe4e6;
-  padding: 9px 12px;
-  border-radius: 10px;
-  cursor: pointer;
-  font-size: 16px;
-  opacity: 0;
-  transition: 0.2s ease;
-}
+  .category-page {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
 
-.task-item:hover .delete-btn {
-  opacity: 1;
-}
+  .task-title-row {
+    gap: 8px;
+  }
 
-.delete-btn:hover {
-  background: #fecdd3;
-  transform: scale(1.05);
-}
-
-/* =========================
-   QUICK ADD TASK
-========================= */
-
-.quick-add-task {
-  margin-top: 18px;
-  display: flex;
-  align-items: center;
-  gap: 14px;
-
-  background: #fff;
-  border: 1px dashed #d9d1dc;
-  border-radius: 15px;
-
-  padding: 16px 20px;
-
-  transition: 0.2s ease;
-}
-
-.quick-add-task:focus-within {
-  border-color: #cbb8f5;
-  box-shadow: 0 4px 15px rgba(90, 70, 110, 0.07);
-}
-
-.quick-add-plus {
-  font-size: 25px;
-  color: #a69cab;
-  font-weight: 400;
-}
-
-.quick-add-task input {
-  flex: 1;
-
-  border: none;
-  outline: none;
-  background: transparent;
-
-  font-size: 17px;
-  color: #403d50;
-}
-
-.quick-add-task input::placeholder {
-  color: #aaa5af;
-}
-
-/* =========================
-   CLEAR ALL BUTTON
-========================= */
-
-.clear-all-btn {
-  border: none;
-  background: #ffe3e8;
-  color: #9c5360;
-
-  padding: 11px 20px;
-  border-radius: 12px;
-
-  font-size: 15px;
-  font-weight: 600;
-
-  cursor: pointer;
-
-  transition: 0.2s ease;
-}
-
-.clear-all-btn:hover {
-  background: #ffd5dd;
-  transform: translateY(-1px);
+  .clear-all-btn {
+    padding: 8px 10px;
+    font-size: 12px;
+  }
 }
