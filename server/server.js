@@ -8,9 +8,29 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// Connect to Neon PostgreSQL
+// -----------------------------------------
+// NEON POSTGRESQL CONNECTION
+// -----------------------------------------
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
+
+  // Keep connections alive so every request
+  // does not need to establish a new connection.
+  max: 10,
+  min: 1,
+
+  idleTimeoutMillis: 30 * 60 * 1000,
+  connectionTimeoutMillis: 5000,
+
+  keepAlive: true,
+  keepAliveInitialDelayMillis: 10000,
+});
+
+// -----------------------------------------
+// POOL ERROR HANDLER
+// -----------------------------------------
+pool.on("error", (error) => {
+  console.error("Unexpected Neon pool error:", error);
 });
 
 // -----------------------------------------
@@ -18,11 +38,16 @@ const pool = new Pool({
 // -----------------------------------------
 app.get("/", async (req, res) => {
   try {
+    const start = Date.now();
+
     const result = await pool.query("SELECT NOW()");
+
+    const duration = Date.now() - start;
 
     res.json({
       message: "Listify Backend is running!",
       database: "Connected to Neon ✅",
+      queryTime: `${duration} ms`,
       time: result.rows[0].now,
     });
 
@@ -31,6 +56,7 @@ app.get("/", async (req, res) => {
 
     res.status(500).json({
       message: "Database connection failed",
+      error: error.message,
     });
   }
 });
@@ -40,6 +66,8 @@ app.get("/", async (req, res) => {
 // -----------------------------------------
 app.get("/api/items", async (req, res) => {
   try {
+    const start = Date.now();
+
     const result = await pool.query(`
       SELECT 
         i.item_id,
@@ -57,6 +85,10 @@ app.get("/api/items", async (req, res) => {
       ORDER BY i.created_at DESC
     `);
 
+    const duration = Date.now() - start;
+
+    console.log(`GET /api/items → ${duration} ms`);
+
     res.json(result.rows);
 
   } catch (error) {
@@ -64,6 +96,7 @@ app.get("/api/items", async (req, res) => {
 
     res.status(500).json({
       message: "Failed to fetch items",
+      error: error.message,
     });
   }
 });
@@ -87,6 +120,8 @@ app.post("/api/items", async (req, res) => {
       });
     }
 
+    const start = Date.now();
+
     const result = await pool.query(
       `INSERT INTO items
        (category_id, item_name, quantity, priority, note)
@@ -94,12 +129,16 @@ app.post("/api/items", async (req, res) => {
        RETURNING *`,
       [
         category_id,
-        item_name,
+        item_name.trim(),
         quantity || null,
         priority || "Normal",
         note || null,
       ]
     );
+
+    const duration = Date.now() - start;
+
+    console.log(`POST /api/items → ${duration} ms`);
 
     res.status(201).json(result.rows[0]);
 
@@ -108,6 +147,7 @@ app.post("/api/items", async (req, res) => {
 
     res.status(500).json({
       message: "Failed to add item",
+      error: error.message,
     });
   }
 });
@@ -119,6 +159,8 @@ app.patch("/api/items/:id/toggle", async (req, res) => {
   try {
     const { id } = req.params;
 
+    const start = Date.now();
+
     const result = await pool.query(
       `UPDATE items
        SET is_completed = NOT is_completed
@@ -126,6 +168,10 @@ app.patch("/api/items/:id/toggle", async (req, res) => {
        RETURNING *`,
       [id]
     );
+
+    const duration = Date.now() - start;
+
+    console.log(`PATCH /api/items/${id}/toggle → ${duration} ms`);
 
     if (result.rows.length === 0) {
       return res.status(404).json({
@@ -140,6 +186,7 @@ app.patch("/api/items/:id/toggle", async (req, res) => {
 
     res.status(500).json({
       message: "Failed to update task",
+      error: error.message,
     });
   }
 });
@@ -151,12 +198,18 @@ app.delete("/api/items/:id", async (req, res) => {
   try {
     const { id } = req.params;
 
+    const start = Date.now();
+
     const result = await pool.query(
       `DELETE FROM items
        WHERE item_id = $1
        RETURNING *`,
       [id]
     );
+
+    const duration = Date.now() - start;
+
+    console.log(`DELETE /api/items/${id} → ${duration} ms`);
 
     if (result.rows.length === 0) {
       return res.status(404).json({
@@ -174,6 +227,7 @@ app.delete("/api/items/:id", async (req, res) => {
 
     res.status(500).json({
       message: "Failed to delete task",
+      error: error.message,
     });
   }
 });
@@ -185,11 +239,19 @@ app.delete("/api/categories/:categoryId/items", async (req, res) => {
   try {
     const { categoryId } = req.params;
 
+    const start = Date.now();
+
     const result = await pool.query(
       `DELETE FROM items
        WHERE category_id = $1
        RETURNING *`,
       [categoryId]
+    );
+
+    const duration = Date.now() - start;
+
+    console.log(
+      `DELETE /api/categories/${categoryId}/items → ${duration} ms`
     );
 
     res.json({
@@ -202,15 +264,49 @@ app.delete("/api/categories/:categoryId/items", async (req, res) => {
 
     res.status(500).json({
       message: "Failed to clear tasks",
+      error: error.message,
     });
   }
 });
 
 // -----------------------------------------
-// START SERVER
+// START SERVER + WARM NEON CONNECTION
 // -----------------------------------------
 const PORT = process.env.PORT || 5000;
 
-app.listen(PORT, () => {
+// 0.0.0.0 allows Render to access the server
+app.listen(PORT, "0.0.0.0", async () => {
   console.log(`Server running on port ${PORT}`);
+
+  try {
+    const start = Date.now();
+
+    await pool.query("SELECT 1");
+
+    const duration = Date.now() - start;
+
+    console.log(`Neon connection warmed up in ${duration} ms`);
+    console.log("Database connection ready ✅");
+
+  } catch (error) {
+    console.error("Could not warm Neon connection:");
+    console.error(error.message);
+  }
+});
+
+// -----------------------------------------
+// GRACEFUL SHUTDOWN
+// -----------------------------------------
+process.on("SIGINT", async () => {
+  console.log("\nClosing database connection...");
+
+  await pool.end();
+
+  console.log("Database connection closed.");
+  process.exit(0);
+});
+
+process.on("SIGTERM", async () => {
+  await pool.end();
+  process.exit(0);
 });
