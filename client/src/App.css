@@ -40,7 +40,6 @@
   width: 100%;
   max-width: 1050px;
   margin: 0 auto;
-
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 24px;
@@ -54,14 +53,10 @@
 .category-card {
   border-radius: 20px;
   padding: 35px 20px;
-
   text-align: center;
   cursor: pointer;
-
   border: 1px solid rgba(255, 255, 255, 0.8);
-
   box-shadow: 0 5px 15px rgba(80, 70, 90, 0.08);
-
   transition:
     transform 0.2s ease,
     box-shadow 0.2s ease;
@@ -296,16 +291,12 @@
   align-items: center;
   justify-content: space-between;
   gap: 14px;
-
   background: white;
   border: 1px solid #eee9e6;
   border-radius: 15px;
-
   padding: 18px 20px;
-
   font-size: 17px;
   color: #403d50;
-
   box-shadow: 0 5px 15px rgba(70, 60, 80, 0.05);
 }
 
@@ -318,7 +309,6 @@
   display: flex;
   align-items: center;
   gap: 16px;
-
   min-width: 0;
   flex: 1;
 }
@@ -331,7 +321,6 @@
 .task-checkbox {
   width: 20px;
   height: 20px;
-
   cursor: pointer;
   flex-shrink: 0;
 }
@@ -369,21 +358,13 @@
 .delete-btn {
   border: none;
   background: #ffe4e6;
-
   padding: 9px 12px;
   border-radius: 10px;
-
   cursor: pointer;
   font-size: 16px;
-
-  opacity: 0;
-  flex-shrink: 0;
-
-  transition: 0.2s ease;
-}
-
-.task-item:hover .delete-btn {
   opacity: 1;
+  flex-shrink: 0;
+  transition: 0.2s ease;
 }
 
 .delete-btn:hover {
@@ -398,18 +379,13 @@
 
 .quick-add-task {
   margin-top: 18px;
-
   display: flex;
   align-items: center;
   gap: 14px;
-
   background: #ffffff;
-
   border: 1px dashed #d9d1dc;
   border-radius: 15px;
-
   padding: 16px 20px;
-
   transition: 0.2s ease;
 }
 
@@ -438,11 +414,9 @@
 .quick-add-task input {
   flex: 1;
   min-width: 0;
-
   border: none;
   outline: none;
   background: transparent;
-
   font-size: 17px;
   color: #403d50;
 }
@@ -458,25 +432,47 @@
 
 .clear-all-btn {
   border: none;
-
   background: #ffe3e8;
   color: #9c5360;
-
   padding: 11px 20px;
   border-radius: 12px;
-
   font-size: 15px;
   font-weight: 600;
-
   cursor: pointer;
   flex-shrink: 0;
-
   transition: 0.2s ease;
 }
 
 .clear-all-btn:hover {
   background: #ffd5dd;
   transform: translateY(-1px);
+}
+
+/* Disabled Clear All */
+.clear-all-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.clear-all-btn:disabled:hover {
+  background: #ffe3e8;
+  transform: none;
+}
+
+
+/* =============================
+        ERROR MESSAGE
+============================= */
+
+.task-error {
+  background: #ffe4e6;
+  color: #9c5360;
+  border: 1px solid #fecdd3;
+  border-radius: 12px;
+  padding: 12px 15px;
+  margin-bottom: 18px;
+  font-size: 14px;
 }
 
 
@@ -486,14 +482,10 @@
 
 .empty-tasks {
   background: white;
-
   border: 1px solid #eee9e6;
   border-radius: 22px;
-
   padding: 70px 20px;
-
   text-align: center;
-
   box-shadow: 0 8px 25px rgba(70, 60, 80, 0.06);
 }
 
@@ -515,16 +507,12 @@
 
 .empty-add-button {
   border: none;
-
   background: #ffe2e9;
   color: #704d58;
-
   padding: 12px 20px;
   border-radius: 12px;
-
   font-weight: 600;
   cursor: pointer;
-
   transition: 0.2s;
 }
 
@@ -540,16 +528,12 @@
 
 .add-task-button {
   border: none;
-
   background: #e7ddff;
   color: #51466d;
-
   padding: 13px 22px;
   border-radius: 12px;
-
   font-weight: 600;
   cursor: pointer;
-
   transition: 0.2s;
 }
 
@@ -566,34 +550,24 @@
 .modal-overlay {
   position: fixed;
   inset: 0;
-
   background: rgba(55, 50, 65, 0.25);
   backdrop-filter: blur(4px);
-
   display: flex;
   justify-content: center;
   align-items: center;
-
   padding: 20px;
-
   z-index: 1000;
 }
 
 .task-modal {
   position: relative;
-
   width: 100%;
   max-width: 460px;
-
   background: #fffaf7;
-
   border-radius: 24px;
   padding: 38px;
-
   box-sizing: border-box;
-
   box-shadow: 0 20px 60px rgba(70, 60, 80, 0.18);
-
   text-align: center;
 }
 
@@ -604,23 +578,16 @@
 
 .modal-close {
   position: absolute;
-
   top: 15px;
   right: 18px;
-
   width: 35px;
   height: 35px;
-
   border: none;
   border-radius: 50%;
-
   background: #f4eef2;
   color: #77707e;
-
   font-size: 22px;
-
   cursor: pointer;
-
   display: flex;
   align-items: center;
   justify-content: center;
@@ -660,19 +627,13 @@
 .task-input {
   width: 100%;
   box-sizing: border-box;
-
   padding: 14px 16px;
-
   border: 2px solid #eee7ec;
   border-radius: 12px;
-
   background: white;
-
   font-size: 16px;
   color: #403d50;
-
   outline: none;
-
   transition: 0.2s;
 }
 
@@ -694,7 +655,6 @@
   display: flex;
   justify-content: flex-end;
   gap: 12px;
-
   margin-top: 25px;
 }
 
@@ -702,12 +662,9 @@
 .modal-add-button {
   border: none;
   border-radius: 11px;
-
   padding: 12px 20px;
-
   font-weight: 600;
   cursor: pointer;
-
   transition: 0.2s;
 }
 
