@@ -5,6 +5,11 @@ function Category() {
   const { name } = useParams();
 
   // -----------------------------------------
+  // BACKEND API URL
+  // -----------------------------------------
+  const API_URL = import.meta.env.VITE_API_URL;
+
+  // -----------------------------------------
   // CATEGORY NAME → DATABASE ID
   // -----------------------------------------
   const categoryIds = {
@@ -27,9 +32,7 @@ function Category() {
   useEffect(() => {
     const fetchTasks = async () => {
       try {
-        const response = await fetch(
-          "http://localhost:5000/api/items"
-        );
+        const response = await fetch(`${API_URL}/api/items`);
 
         if (!response.ok) {
           throw new Error("Failed to fetch tasks");
@@ -61,30 +64,20 @@ function Category() {
   // ADD NEW TASK
   // -----------------------------------------
   const handleAddTask = async (e) => {
-    console.log("Key pressed:", e.key);
-
     if (e.key === "Enter" && newTask.trim() !== "") {
-      console.log("Trying to add:", newTask);
-      console.log("Category ID:", categoryId);
-
       try {
-        const response = await fetch(
-          "http://localhost:5000/api/items",
-          {
-            method: "POST",
+        const response = await fetch(`${API_URL}/api/items`, {
+          method: "POST",
 
-            headers: {
-              "Content-Type": "application/json",
-            },
+          headers: {
+            "Content-Type": "application/json",
+          },
 
-            body: JSON.stringify({
-              category_id: categoryId,
-              item_name: newTask.trim(),
-            }),
-          }
-        );
-
-        console.log("POST response status:", response.status);
+          body: JSON.stringify({
+            category_id: categoryId,
+            item_name: newTask.trim(),
+          }),
+        });
 
         if (!response.ok) {
           throw new Error("Failed to add task");
@@ -92,18 +85,13 @@ function Category() {
 
         const savedTask = await response.json();
 
-        console.log("Task saved:", savedTask);
-
         const task = {
           id: savedTask.item_id,
           name: savedTask.item_name,
           completed: savedTask.is_completed,
         };
 
-        setTasks((currentTasks) => [
-          task,
-          ...currentTasks,
-        ]);
+        setTasks((currentTasks) => [task, ...currentTasks]);
 
         setNewTask("");
       } catch (error) {
@@ -118,7 +106,7 @@ function Category() {
   const handleToggleTask = async (taskId) => {
     try {
       const response = await fetch(
-        `http://localhost:5000/api/items/${taskId}/toggle`,
+        `${API_URL}/api/items/${taskId}/toggle`,
         {
           method: "PATCH",
         }
@@ -151,7 +139,7 @@ function Category() {
   const handleDeleteTask = async (taskId) => {
     try {
       const response = await fetch(
-        `http://localhost:5000/api/items/${taskId}`,
+        `${API_URL}/api/items/${taskId}`,
         {
           method: "DELETE",
         }
@@ -162,9 +150,7 @@ function Category() {
       }
 
       setTasks((currentTasks) =>
-        currentTasks.filter(
-          (task) => task.id !== taskId
-        )
+        currentTasks.filter((task) => task.id !== taskId)
       );
     } catch (error) {
       console.error("Error deleting task:", error);
@@ -177,7 +163,7 @@ function Category() {
   const handleClearAll = async () => {
     try {
       const response = await fetch(
-        `http://localhost:5000/api/categories/${categoryId}/items`,
+        `${API_URL}/api/categories/${categoryId}/items`,
         {
           method: "DELETE",
         }
@@ -310,10 +296,7 @@ function Category() {
             placeholder="Type a new task and press Enter..."
             value={newTask}
             onChange={(e) => setNewTask(e.target.value)}
-            onKeyDown={(e) => {
-              console.log("Key pressed:", e.key);
-              handleAddTask(e);
-            }}
+            onKeyDown={handleAddTask}
           />
 
         </div>
