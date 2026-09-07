@@ -6,7 +6,7 @@ shopping, locations, and other activities.
 
 ## 🌐 Use Listify
 
-👉 [Open Listify](https://listify-delta-three.vercel.app)
+👉 [Open Listify](https://listify-rose-kappa.vercel.app/)
 
 ## ✨ Features
 
