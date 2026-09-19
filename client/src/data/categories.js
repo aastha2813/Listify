@@ -1,33 +1,40 @@
+import vinayakIcon from "../assets/vinayak.svg";
+import rajuIcon from "../assets/raju.svg";
+import dmartIcon from "../assets/dmart.svg";
+import suratIcon from "../assets/surat.svg";
+import ahmedabadIcon from "../assets/ahmedabad.svg";
+import othersIcon from "../assets/others.svg";
+
 const categories = [
   {
     id: 1,
     name: "Vinayak",
-    icon: "🛍️",
+    icon: vinayakIcon,
   },
   {
     id: 2,
     name: "Raju",
-    icon: "🍿",
+    icon: rajuIcon,
   },
   {
     id: 3,
     name: "D-Mart",
-    icon: "🛒",
+    icon: dmartIcon,
   },
   {
     id: 4,
     name: "Surat",
-    icon: "📍",
+    icon: ahmedabadIcon,
   },
   {
     id: 5,
     name: "Ahmedabad",
-    icon: "📍",
+    icon: ahmedabadIcon,
   },
   {
     id: 6,
     name: "Others",
-    icon: "📋",
+    icon: othersIcon,
   },
 ];
 

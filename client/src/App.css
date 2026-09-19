@@ -3,126 +3,367 @@
 ============================= */
 
 .dashboard {
+  position: relative;
   min-height: 100vh;
-  background: #fffaf7;
-  padding: 50px 20px;
+  overflow: hidden;
+
+  background:
+    radial-gradient(circle at 8% 12%, rgba(255, 226, 231, 0.7), transparent 20%),
+    radial-gradient(circle at 92% 18%, rgba(232, 220, 255, 0.65), transparent 22%),
+    #fffaf7;
+
+  padding: 42px 28px 30px;
   box-sizing: border-box;
 }
-
 
 /* =============================
         DASHBOARD HEADER
 ============================= */
 
 .dashboard-header {
+  position: relative;
+  z-index: 2;
+
+  max-width: 1050px;
+  margin: 0 auto 26px;
+
+  display: flex;
+  justify-content: center;
   text-align: center;
-  margin-bottom: 42px;
+}
+
+.dashboard-brand {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  text-align: left;
+}
+
+.brand-icon {
+  width: 58px;
+  height: 58px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+
+  background: #ffe4e9;
+  border: 1px solid rgba(255, 255, 255, 0.95);
+  border-radius: 18px;
+
+  font-size: 29px;
+
+  box-shadow: 0 8px 22px rgba(80, 70, 90, 0.08);
 }
 
 .dashboard-header h1 {
   margin: 0;
-  font-size: 44px;
-  color: #3d3d4e;
+
+  color: #353445;
+  font-size: 46px;
+  line-height: 1;
+  font-weight: 750;
+  letter-spacing: -1.5px;
 }
 
 .dashboard-header p {
-  margin-top: 10px;
-  font-size: 17px;
-  color: #888292;
+  margin: 7px 0 0;
+
+  color: #81788c;
+  font-size: 16px;
+  font-weight: 500;
 }
 
+/* =============================
+        DASHBOARD DECORATIONS
+============================= */
+
+.dashboard-decoration {
+  position: absolute;
+  z-index: 0;
+
+  pointer-events: none;
+
+  border-radius: 50%;
+  opacity: 0.7;
+}
+
+.decoration-left {
+  width: 105px;
+  height: 105px;
+
+  left: -48px;
+  top: 320px;
+
+  background: #ffe7c9;
+}
+
+.decoration-right {
+  width: 80px;
+  height: 80px;
+
+  right: -32px;
+  bottom: 125px;
+
+  background: #e8dcff;
+}
 
 /* =============================
         CATEGORY GRID
 ============================= */
 
 .category-container {
+  position: relative;
+  z-index: 2;
+
   width: 100%;
   max-width: 1050px;
+
   margin: 0 auto;
+
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
+
+  gap: 20px;
 }
 
+/* =============================
+        CATEGORY CARD LINK
+============================= */
+
+.category-card-link {
+  display: block;
+
+  color: inherit;
+  text-decoration: none;
+}
 
 /* =============================
         CATEGORY CARDS
 ============================= */
 
 .category-card {
-  border-radius: 20px;
-  padding: 35px 20px;
-  text-align: center;
+  position: relative;
+
+  min-height: 205px;
+
+  overflow: hidden;
+
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  padding: 27px 24px;
+
+  box-sizing: border-box;
+
+  border: 1px solid rgba(255, 255, 255, 0.92);
+  border-radius: 25px;
+
   cursor: pointer;
-  border: 1px solid rgba(255, 255, 255, 0.8);
-  box-shadow: 0 5px 15px rgba(80, 70, 90, 0.08);
+
+  text-align: center;
+
+  box-shadow:
+    0 8px 22px rgba(80, 70, 90, 0.075),
+    inset 0 1px 0 rgba(255, 255, 255, 0.65);
+
   transition:
-    transform 0.2s ease,
-    box-shadow 0.2s ease;
+    transform 0.22s ease,
+    box-shadow 0.22s ease;
 }
 
+.category-card-link:hover .category-card {
+  transform: translateY(-5px);
+
+  box-shadow:
+    0 14px 30px rgba(80, 70, 90, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.75);
+}
 
 /* =============================
         PASTEL COLORS
 ============================= */
 
-/* Vinayak */
 .category-container a:nth-child(1) .category-card {
-  background: #ffe4e9;
+  background: linear-gradient(145deg, #ffe1e7, #ffedf0);
 }
 
-/* Raju */
 .category-container a:nth-child(2) .category-card {
-  background: #fff3c4;
+  background: linear-gradient(145deg, #fff0bd, #fff7d9);
 }
 
-/* D-Mart */
 .category-container a:nth-child(3) .category-card {
-  background: #dff5e3;
+  background: linear-gradient(145deg, #d9f2dd, #ebf9ed);
 }
 
-/* Surat */
 .category-container a:nth-child(4) .category-card {
-  background: #dfeeff;
+  background: linear-gradient(145deg, #dcecff, #edf5ff);
 }
 
-/* Ahmedabad */
 .category-container a:nth-child(5) .category-card {
-  background: #eee4ff;
+  background: linear-gradient(145deg, #e9ddff, #f4edff);
 }
 
-/* Others */
 .category-container a:nth-child(6) .category-card {
-  background: #ffe8d6;
+  background: linear-gradient(145deg, #ffe3d1, #fff0e5);
 }
-
 
 /* =============================
-        CARD HOVER
+        CARD DECORATIONS
 ============================= */
 
-.category-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 24px rgba(80, 70, 90, 0.13);
+.card-decoration {
+  position: absolute;
+
+  pointer-events: none;
+
+  border-radius: 50%;
 }
 
+.card-decoration-top {
+  width: 72px;
+  height: 72px;
+
+  right: -22px;
+  top: -24px;
+
+  background: rgba(255, 255, 255, 0.28);
+}
+
+.card-decoration-bottom {
+  width: 42px;
+  height: 42px;
+
+  left: -17px;
+  bottom: -17px;
+
+  background: rgba(255, 255, 255, 0.2);
+}
 
 /* =============================
         CARD CONTENT
 ============================= */
 
-.category-card h2 {
-  margin: 0 0 12px;
-  font-size: 42px;
+.category-icon {
+  position: relative;
+  z-index: 1;
+
+  width: 68px;
+  height: 68px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin-bottom: 15px;
+
+  background: rgba(255, 255, 255, 0.62);
+  border: 1px solid rgba(255, 255, 255, 0.7);
+
+  border-radius: 20px;
+
+  font-size: 34px;
+
+  box-shadow: 0 6px 14px rgba(80, 70, 90, 0.055);
+}
+
+.category-icon-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
 }
 
 .category-card h3 {
+  position: relative;
+  z-index: 1;
+
   margin: 0;
+
+  color: #3f3d4d;
+
   font-size: 21px;
-  color: #45424f;
+  font-weight: 700;
+
+  letter-spacing: -0.2px;
+
+  text-align: center;
 }
 
+.category-arrow {
+  position: absolute;
+  z-index: 2;
+
+  right: 20px;
+  bottom: 18px;
+
+  width: 39px;
+  height: 39px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background: rgba(255, 255, 255, 0.68);
+  color: #756681;
+
+  font-size: 20px;
+  font-weight: 500;
+
+  box-shadow: 0 4px 10px rgba(80, 70, 90, 0.045);
+
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease;
+}
+
+.category-card-link:hover .category-arrow {
+  transform: translateX(3px);
+  background: rgba(255, 255, 255, 0.92);
+}
+
+/* =============================
+        DASHBOARD FOOTER
+============================= */
+
+.dashboard-footer {
+  position: relative;
+  z-index: 2;
+
+  max-width: 1050px;
+
+  margin: 24px auto 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 9px;
+
+  color: #918995;
+
+  font-size: 13px;
+  font-weight: 500;
+
+  text-align: center;
+}
+
+.footer-family-icon {
+  font-size: 17px;
+}
+
+.footer-heart {
+  color: #d08a99;
+  font-size: 18px;
+}
 
 /* =============================
         TABLET DASHBOARD
@@ -130,15 +371,22 @@
 
 @media (max-width: 800px) {
   .dashboard {
-    padding: 40px 20px;
+    padding: 36px 20px 28px;
+  }
+
+  .dashboard-header h1 {
+    font-size: 42px;
   }
 
   .category-container {
     grid-template-columns: repeat(2, 1fr);
-    gap: 18px;
+    gap: 17px;
+  }
+
+  .category-card {
+    min-height: 180px;
   }
 }
-
 
 /* =============================
         MOBILE DASHBOARD
@@ -146,11 +394,23 @@
 
 @media (max-width: 550px) {
   .dashboard {
-    padding: 28px 16px 40px;
+    padding: 25px 15px 28px;
   }
 
   .dashboard-header {
-    margin-bottom: 28px;
+    margin-bottom: 20px;
+  }
+
+  .dashboard-brand {
+    flex-direction: row;
+    gap: 9px;
+  }
+
+  .brand-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 15px;
+    font-size: 24px;
   }
 
   .dashboard-header h1 {
@@ -158,36 +418,136 @@
   }
 
   .dashboard-header p {
-    margin-top: 7px;
-    font-size: 14px;
+    margin-top: 5px;
+    font-size: 13px;
   }
 
-  /* One category card per row */
+
+  .dashboard-intro {
+    max-width: 100%;
+    margin-bottom: 20px;
+    padding: 15px 12px;
+    border-radius: 18px;
+  }
+
+  .intro-left {
+    gap: 5px;
+  }
+
+  .intro-left span {
+    padding: 5px 8px;
+    font-size: 11px;
+  }
+
+  .intro-right {
+    flex-direction: column;
+    gap: 1px;
+    font-size: 11px;
+  }
+
   .category-container {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 12px;
   }
 
   .category-card {
-    padding: 18px 16px;
-    border-radius: 16px;
+    min-height: 165px;
+    padding: 19px 12px;
+    border-radius: 20px;
   }
 
-  .category-card h2 {
-    font-size: 32px;
-    margin-bottom: 7px;
+  .category-icon {
+    width: 51px;
+    height: 51px;
+
+    margin-bottom: 11px;
+
+    border-radius: 16px;
+
+    font-size: 26px;
   }
 
   .category-card h3 {
     font-size: 17px;
   }
 
-  /* No hover movement on touch screens */
-  .category-card:hover {
-    transform: none;
+  .category-arrow {
+    width: 31px;
+    height: 31px;
+
+    right: 10px;
+    bottom: 10px;
+
+    font-size: 17px;
+  }
+
+  .dashboard-footer {
+    margin-top: 20px;
+
+    padding: 0 8px;
+
+    font-size: 11px;
+    line-height: 1.4;
+  }
+
+  .footer-family-icon {
+    font-size: 15px;
+  }
+
+  .decoration-left {
+    width: 70px;
+    height: 70px;
+
+    left: -38px;
+    top: 260px;
+  }
+
+  .decoration-right {
+    width: 55px;
+    height: 55px;
+
+    right: -25px;
+    bottom: 105px;
   }
 }
 
+/* =============================
+        VERY SMALL PHONES
+============================= */
+
+@media (max-width: 360px) {
+  .dashboard {
+    padding-left: 11px;
+    padding-right: 11px;
+  }
+
+  .dashboard-intro {
+    padding: 13px 8px;
+  }
+
+  .intro-left span {
+    font-size: 10px;
+  }
+
+  .category-container {
+    gap: 10px;
+  }
+
+  .category-card {
+    min-height: 150px;
+    padding: 17px 10px;
+  }
+
+  .category-icon {
+    width: 46px;
+    height: 46px;
+    font-size: 23px;
+  }
+
+  .category-card h3 {
+    font-size: 15px;
+  }
+}
 
 /* =============================
         CATEGORY PAGE
